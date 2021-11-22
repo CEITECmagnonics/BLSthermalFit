@@ -1,4 +1,4 @@
-function [BLSMatrix] = BLSkDetectionGauss(stepX,stepY,dimX,dimY, sig, A)
+function [BLSMatrix] = BLSkDetectionGauss(stepX,stepY,dimX,dimY, sigX,sigY, A)
 %Compute matrix of BLS k detection, !steps in micrometer!
 %Compute length of steps
 FsCellX = (2*pi)/stepX;
@@ -15,6 +15,6 @@ sx = round((dimX+1)/2); sy = round((dimY+1)/2);
 % A = 1;
 for i=1:length(fx)
     for j=1:length(fy)
-            BLSMatrix(i,j) = A*exp(-((((i-sx)*kStepX).^2)/(2*sig.^2)))*exp(-((((j-sy)*kStepY).^2)/(2*sig.^2))); 
+            BLSMatrix(i,j) = A*exp(-((((i-sx)*kStepX).^2)/(2*sigY.^2)))*exp(-((((j-sy)*kStepY).^2)/(2*sigX.^2))); 
     end
 end
