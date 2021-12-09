@@ -32,7 +32,7 @@ BE = (BE./max(abs(BE)))';
 % plot(abs(fS), BE)
 
 % DoS
-DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))/max(max(max(FFTtrunc.*conj(FFTtrunc))))),2),1));
+DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))),2),1));
 DoSsim = DoSsim.*BE./max(DoSsim.*BE);
 DoS = double(A*interpn(abs(fS)/1e9,DoSsim,f,'linear',0)+dc);
 end
