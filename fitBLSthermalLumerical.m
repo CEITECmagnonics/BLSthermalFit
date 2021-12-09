@@ -11,7 +11,7 @@ global fS FFTtrunc BLSkDet
 % kxi = (-dimX/2:dimX/2-1)*(FsCellX)/dimX;
 % kyi = (-dimY/2:dimY/2-1)*(FsCellY)/dimY;
 % [KXi, KYi] = meshgrid(kxi, kyi);
-% BLSkDet = interp2(KX, KY, sqrt(I2pinch), KXi, KYi);
+% BLSkDet = interp2(KX, KY, I2, KXi, KYi);
 
 % figure('name', 'Lumerical result')
 % surf(KXi, KYi, BLSkDet, 'edgecolor','none')
