@@ -21,6 +21,15 @@ global fS FFTtrunc BLSkDet DoSsim
 % ylim([0 120]);
 % caxis([1e4 1e7]);
 
+% 
+% plot(kxi, BLSkDet(:,end/2), kyi, BLSkDet(end/2,:))
+% legend('BV', 'DE')
+% xlim([0 80])
+% xlabel('k (rad/um)')
+% ylabel('Detection effectivity')
+% set(gca, 'FontSize', 9)
+% set(gcf,'units','centimeters','position',[50,20,16,8])
+
 
 % % Bose-Einstein distribution
 % cL = 299792458;
@@ -33,7 +42,6 @@ global fS FFTtrunc BLSkDet DoSsim
 % % plot(abs(fS), BE)
 % DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))),2),1));
 % DoSsim = DoSsim.*BE./max(DoSsim.*BE);
-
 
 
 
