@@ -12,7 +12,7 @@ global fS FFTtrunc BLSkDet DoSsim
 % kxi = (-dimX/2:dimX/2-1)*(FsCellX)/dimX;
 % kyi = (-dimY/2:dimY/2-1)*(FsCellY)/dimY;
 % [KXi, KYi] = meshgrid(kxi, kyi);
-% BLSkDet = interp2(KX, KY, I2, KXi, KYi);
+% BLSkDet = interp2(KX, KY, I2, KXi, KYi, 'linear', 0);
 
 % figure('name', 'Lumerical result')
 % surf(KXi, KYi, BLSkDet, 'edgecolor','none')
@@ -22,15 +22,15 @@ global fS FFTtrunc BLSkDet DoSsim
 % caxis([1e4 1e7]);
 
 % 
-% plot(kxi, BLSkDet(:,end/2), kyi, BLSkDet(end/2,:))
-% legend('BV', 'DE')
-% xlim([0 80])
-% xlabel('k (rad/um)')
-% ylabel('Detection effectivity')
-% set(gca, 'FontSize', 9)
-% set(gcf,'units','centimeters','position',[50,20,16,8])
+plot(kxi, BLSkDet(:,end/2), kyi, BLSkDet(end/2,:))
+legend('BV', 'DE')
+xlim([0 80])
+xlabel('k (rad/um)')
+ylabel('Detection effectivity')
+set(gca, 'FontSize', 9)
+set(gcf,'units','centimeters','position',[50,20,16,8])
 
-
+% 
 % % Bose-Einstein distribution
 % cL = 299792458;
 % wi = 2*pi*cL/532e-9; % Frequency of light
