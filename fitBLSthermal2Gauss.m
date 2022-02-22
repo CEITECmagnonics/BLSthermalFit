@@ -1,8 +1,7 @@
 function [DoS] = fitBLSthermal2Gauss(f,FWTMx, FWTMy, A, FWTM2, k02, A2, dc)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
-global sizeOfData StepX StepY fS FFTtrunc
-
+global sizeOfData StepX StepY fS FFTtruncConj
 sigX = FWTMx/4.29193;
 sigY = FWTMy/4.29193;
 sig2 = FWTM2/4.29193;
@@ -19,7 +18,8 @@ BE = (BE./max(abs(BE)))';
 % plot(abs(fS), BE)
 
 % DoS
-DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))/max(max(max(FFTtrunc.*conj(FFTtrunc))))),2),1));
+% DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))/max(max(max(FFTtrunc.*conj(FFTtrunc))))),2),1));
+DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtruncConj)/max(max(max(FFTtruncConj)))),2),1));
 DoSsim = DoSsim.*BE./max(DoSsim.*BE);
 DoS = double(A*interpn(abs(fS)/1e9,DoSsim,f,'linear',0)+dc);
 end
