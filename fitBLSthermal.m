@@ -1,11 +1,11 @@
-function [DoS] = fitBLSthermal(f,FWTMx, FWTMy, A,dc)
+function [DoS] = fitBLSthermal(f,HWTMx, HWTMy, A,dc)
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
-global sizeOfData StepX StepY fS FFTtruncConj
+global kS fS FFTtruncConj
 
-sigX = FWTMx/4.29193;
-sigY = FWTMy/4.29193;
-BLSkDet = BLSkDetectionGauss(StepX, StepY, sizeOfData(1), sizeOfData(2), sigX, sigY, 1);
+sigX = 2*HWTMx/4.29193;
+sigY = 2*HWTMy/4.29193;
+BLSkDet = BLSkDetectionGauss(kS, kS, sigX, sigY, 1);
 
 % Bose-Einstein distribution
 cL = 299792458;
@@ -22,6 +22,8 @@ BE = (BE./max(abs(BE)))';
 % DoS
 % DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtrunc.*conj(FFTtrunc))/max(max(max(FFTtrunc.*conj(FFTtrunc))))),2),1));
 DoSsim = squeeze(sum(sum(abs(BLSkDet.*(FFTtruncConj)/max(max(max(FFTtruncConj)))),2),1));
-DoSsim = DoSsim.*BE./max(DoSsim.*BE);
+% DoSsim = DoSsim.*BE./max(DoSsim.*BE);
+DoSsim = DoSsim.*BE./max(DoSsim(1:81).*BE(1:81));
+DoSsim = DoSsim - DoSsim(1);
 DoS = double(A*interpn(abs(fS)/1e9,DoSsim,f,'linear',0)+dc);
 end
